@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصري أون لاين - بوابة الذكاء الاصطناعي والخدمات الرقمية</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --bg-dark: #0a0e1a;
+            --bg-card: #13192e;
+            --primary: #2563eb;
+            --purple: #7c3aed;
+            --accent: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); padding-bottom: 70px; direction: rtl; }
+        header { background-color: rgba(19, 25, 46, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 15px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 10px; }
+        .admob-banner { width: 100%; max-width: 728px; height: 90px; background: linear-gradient(90deg, #1e293b, #0f172a); border: 1px dashed rgba(37, 99, 235, 0.3); border-radius: 12px; margin: 100px auto 20px auto; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-muted); font-size: 13px; }
+        @media (max-width: 768px) { .admob-banner { max-width: 320px; height: 50px; margin-top: 85px; } }
+        .hero { text-align: center; padding: 30px 5%; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+        .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 0 5% 30px 5%; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s; }
+        .tool-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .tool-footer-btn { width: 100%; background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 12px; font-weight: 600; text-align: center; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: rgba(19, 25, 46, 0.95); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .nav-item.active { color: var(--accent); }
+        footer { text-align: center; color: var(--text-muted); padding: 20px; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fa-solid fa-globe"></i> <span>مصري أون لاين</span></div>
+    </header>
+
+    <div class="admob-banner">
+        <div><i class="fa-solid fa-rectangle-ad"></i> مساحة إعلانية جاهزة لـ Google AdMob لربح المال</div>
+    </div>
+
+    <main class="hero">
+        <h1>بوابة <span>مصري أون لاين</span> الذكية</h1>
+        <p>المنصة العربية الأولى التي تجمع لك أدوات الذكاء الاصطناعي الحقيقية ومكتبة البرومبتات في مكان واحد ويب متجاوب بالكامل.</p>
+    </main>
+
+    <div class="tools-grid">
+        <div class="tool-card">
+            <h3>ChatGPT</h3>
+            <p>أداة المحادثة والإجابة على الأسئلة وتوليد المقالات الاحترافية.</p>
+            <a href="https://chatgpt.com" target="_blank" class="tool-footer-btn">فتح الأداة الحقيقية</a>
+        </div>
+        <div class="tool-card">
+            <h3>Midjourney</h3>
+            <p>توليد صور فنية فائقة الواقعية من خلال الأوامر النصية.</p>
+            <a href="https://midjourney.com" target="_blank" class="tool-footer-btn">فتح الأداة الحقيقية</a>
+        </div>
+    </div>
+
+    <footer><p>© 2026 مصري أون لاين. جميع الحقوق محفوظة.</p></footer>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active"><i class="fa-solid fa-house"></i><span>الرئيسية</span></div>
+        <div class="nav-item"><i class="fa-solid fa-terminal"></i><span>البرومبتات</span></div>
+        <div class="nav-item"><i class="fa-solid fa-heart"></i><span>المفضلة</span></div>
+    </nav>
+
+</body>
+</html>
