@@ -1,128 +1,769 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصري أون لاين - بوابة الذكاء الاصطناعي</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <style>
-        :root {
-            --bg-dark: #0a0e1a;
-            --bg-card: #13192e;
-            --primary: #2563eb;
-            --purple: #7c3aed;
-            --accent: #06b6d4;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); padding-bottom: 70px; }
-        header { background-color: rgba(19, 25, 46, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 15px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 10px; }
-        .admob-banner { width: 100%; max-width: 728px; height: 90px; background: linear-gradient(90deg, #1e293b, #0f172a); border: 1px dashed rgba(37, 99, 235, 0.3); border-radius: 12px; margin: 100px auto 20px auto; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-muted); font-size: 13px; }
-        @media (max-width: 768px) { .admob-banner { max-width: 320px; height: 50px; margin-top: 85px; } }
-        .hero { text-align: center; padding: 30px 5%; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
-        .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; }
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 0 5% 30px 5%; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s; }
-        .tool-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .tool-footer-btn { width: 100%; background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 12px; font-weight: 600; text-align: center; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 15px; }
-        .tool-footer-btn:hover { background: linear-gradient(135deg, var(--primary), var(--purple)); border-color: transparent; }
-        .prompts-container { display: flex; flex-direction: column; gap: 15px; padding: 0 5%; }
-        .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .prompt-text { font-size: 14px; color: #e2e8f0; line-height: 1.6; }
-        .prompt-category { background: rgba(124, 58, 237, 0.1); color: var(--purple); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 6px; display: inline-block; }
-        .copy-btn { background: var(--bg-dark); border: 1px solid var(--border); color: var(--accent); padding: 8px 14px; border-radius: 10px; cursor: pointer; white-space: nowrap; font-weight: 600; }
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: rgba(19, 25, 46, 0.95); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 11px; font-weight: 600; cursor: pointer; }
-        .nav-item.active { color: var(--accent); }
-        .nav-item i { font-size: 18px; margin-bottom: 2px; }
-        .page-content { display: none; }
-        .page-content.active { display: block; }
-        .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(100px); background: #10b981; color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600; transition: transform 0.3s; z-index: 2000; }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        footer { text-align: center; color: var(--text-muted); padding: 20px; font-size: 12px; margin-top: 20px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10172a">
+<meta name="description" content="مصري أون لاين - بوابتك إلى أدوات الذكاء الاصطناعي">
+<title>مصري أون لاين | بوابة الذكاء الاصطناعي</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#0b1020;
+--panel:#151f35;
+--line:#293650;
+--text:#f5f7ff;
+--muted:#aab5cc;
+--blue:#5b8cff;
+--purple:#9675ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Cairo,Tahoma,sans-serif;
+}
+button,input{font:inherit}
+button,a{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.container{width:min(1100px,94%);margin:auto}
+
+header{
+position:sticky;
+top:0;
+background:#10172af2;
+border-bottom:1px solid var(--line);
+z-index:5;
+}
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:13px 0;
+gap:10px;
+}
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:900;
+font-size:19px;
+}
+.logo{
+background:linear-gradient(135deg,var(--blue),var(--purple));
+padding:8px 14px;
+border-radius:13px;
+font-size:23px;
+}
+.small{color:var(--muted);font-size:11px}
+button{color:inherit}
+.topbtn,.filter,.navbtn{
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:12px;
+padding:9px 13px;
+}
+.hero{text-align:center;padding:45px 0 25px}
+.hero h1{
+font-size:clamp(28px,5vw,45px);
+margin:15px 0;
+}
+.gradient{
+background:linear-gradient(90deg,#69c9ff,#a78aff,#62e0d1);
+background-clip:text;
+color:transparent;
+}
+.hero p{
+color:var(--muted);
+line-height:2;
+max-width:650px;
+margin:auto;
+}
+.ad{
+border:1px dashed #53617b;
+border-radius:14px;
+padding:17px;
+text-align:center;
+color:var(--muted);
+font-size:12px;
+margin:15px auto 28px;
+}
+h2{font-size:21px}
+.page{display:none;padding-bottom:30px}
+.page.active{display:block}
+.sectionhead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+.toolbar{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin:15px 0;
+}
+.search{
+flex:1;
+min-width:180px;
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:12px;
+padding:12px;
+color:white;
+}
+.filter{font-size:12px;color:var(--muted)}
+.filter.active{
+background:#253b68;
+border-color:var(--blue);
+color:white;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+.card{
+background:linear-gradient(145deg,#192640,#121a2d);
+border:1px solid var(--line);
+border-radius:18px;
+padding:17px;
+min-width:0;
+}
+.cardtop{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+.icon{
+font-size:27px;
+background:#26395c;
+border-radius:13px;
+padding:8px;
+}
+.fav{
+background:#26334d;
+border:1px solid var(--line);
+border-radius:10px;
+padding:7px 11px;
+font-size:20px;
+}
+.fav.saved{color:#ffd166}
+.card h3{margin:12px 0 5px}
+.card p{
+font-size:12px;
+color:var(--muted);
+line-height:1.9;
+min-height:45px;
+}
+.tag{
+display:inline-block;
+color:#b9ccff;
+background:#263657;
+padding:3px 9px;
+border-radius:20px;
+font-size:10px;
+}
+.open{
+display:block;
+text-align:center;
+margin-top:14px;
+background:linear-gradient(100deg,#477df0,#8263e8);
+padding:10px;
+border-radius:11px;
+font-size:12px;
+font-weight:bold;
+}
+.copy{
+width:100%;
+margin-top:12px;
+background:#183e46;
+color:#8ce9e2;
+border:1px solid #28616a;
+border-radius:10px;
+padding:10px;
+}
+.empty{
+grid-column:1/-1;
+text-align:center;
+padding:30px;
+color:var(--muted);
+border:1px dashed var(--line);
+border-radius:15px;
+}
+.info{
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:15px;
+padding:17px;
+margin:22px 0;
+}
+.info p{
+font-size:12px;
+color:var(--muted);
+line-height:2;
+}
+.nav{
+position:sticky;
+bottom:0;
+background:#10172af5;
+border-top:1px solid var(--line);
+z-index:4;
+}
+.navinner{
+display:flex;
+justify-content:center;
+gap:8px;
+padding:8px 0;
+}
+.navbtn{
+flex:1;
+max-width:150px;
+font-size:12px;
+color:var(--muted);
+}
+.navbtn span{
+display:block;
+font-size:18px;
+}
+.navbtn.active{
+color:white;
+background:#253b68;
+border-color:var(--blue);
+}
+footer{
+text-align:center;
+color:var(--muted);
+font-size:11px;
+padding:20px;
+}
+.toast{
+position:fixed;
+bottom:85px;
+left:50%;
+transform:translateX(-50%);
+background:#e8fff9;
+color:#123b36;
+padding:10px 17px;
+border-radius:10px;
+display:none;
+z-index:10;
+font-size:12px;
+}
+.toast.show{display:block}
+@media(max-width:800px){
+.grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+.grid{grid-template-columns:1fr}
+.hero{padding-top:30px}
+.brand{font-size:16px}
+.navbtn{padding:7px 3px}
+.header{padding:10px 0}
+}
+</style>
 </head>
+
 <body>
-    <header>
-        <div class="logo"><i class="fa-solid fa-globe"></i> <span>مصري أون لاين</span></div>
-    </header>
-    <div class="admob-banner">
-        <div><i class="fa-solid fa-rectangle-ad"></i> مساحة إعلانية جاهزة لـ Google AdMob لربح المال</div>
-    </div>
-    <main id="home-page" class="page-content active">
-        <div class="hero">
-            <h1>بوابة <span>مصري أون لاين</span> الذكية</h1>
-            <p>المنصة العربية الأولى التي تجمع لك أدوات الذكاء الاصطناعي الحقيقية ومكتبة البرومبتات في مكان واحد ويب متجاوب بالكامل.</p>
+
+<header>
+<div class="container header">
+<a class="brand" href="#" onclick="showPage('home');return false">
+<span class="logo">م</span>
+<span>
+مصري أون لاين<br>
+<span class="small">بوابتك إلى أدوات الذكاء الاصطناعي</span>
+</span>
+</a>
+<button class="topbtn" onclick="showPage('prompts')">
+📚 البرومبتات
+</button>
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+<span class="tag">✨ دليلك العربي للأدوات الذكية</span>
+<h1>اكتشف عالم <span class="gradient">الذكاء الاصطناعي</span></h1>
+<p>
+أدوات للكتابة والتصميم وصناعة الصور والفيديو والموسيقى،
+مع مكتبة برومبتات سهلة الاستخدام.
+</p>
+</section>
+
+<div class="ad">
+▧ مساحة إعلانية تجريبية<br>
+لا توجد إعلانات فعلية حتى ربط خدمة إعلانية والحصول على الموافقة.
+</div>
+
+<section id="home" class="page active">
+<div class="sectionhead">
+<h2>🧰 أدوات الذكاء الاصطناعي</h2>
+<span class="small" id="count"></span>
+</div>
+
+<div class="toolbar">
+<input id="search" class="search" placeholder="🔎 ابحث عن أداة...">
+<button class="filter active" data-filter="الكل">الكل</button>
+<button class="filter" data-filter="محادثة">محادثة</button>
+<button class="filter" data-filter="صور وتصميم">صور وتصميم</button>
+<button class="filter" data-filter="فيديو">فيديو</button>
+<button class="filter" data-filter="موسيقى وصوت">موسيقى وصوت</button>
+</div>
+
+<div class="grid" id="tools"></div>
+
+<div class="info">
+<h3>💡 معلومة مهمة</h3>
+<p>
+هذا الموقع دليل يجمع روابط الأدوات والبرومبتات.
+عند الضغط على أداة ستفتح موقعها الرسمي.
+تشغيل الذكاء الاصطناعي داخل الموقع نفسه يحتاج إلى
+ربط خدمات API وخادم آمن.
+</p>
+</div>
+</section>
+
+<section id="prompts" class="page">
+<h2>📚 مكتبة البرومبتات</h2>
+<p class="small">انسخ البرومبت واستخدمه في الأداة المناسبة.</p>
+<div class="grid" id="promptGrid"></div>
+</section>
+
+<section id="favorites" class="page">
+<h2>⭐ أدواتي المفضلة</h2>
+<p class="small">تُحفظ المفضلة على جهازك ومتصفحك.</p>
+<div class="grid" id="favoriteGrid"></div>
+</section>
+
+<section id="about" class="page">
+<h2>ℹ️ عن مصري أون لاين</h2>
+<div class="info">
+<h3>مرحبًا بك في مصري أون لاين</h3>
+<p>
+موقع عربي يساعدك على الوصول إلى أدوات الذكاء الاصطناعي،
+مع مكتبة برومبتات وخاصية حفظ الأدوات المفضلة.
+</p>
+</div>
+<div class="info">
+<h3>الخصوصية</h3>
+<p>
+قائمة المفضلة تُحفظ محليًا في متصفح جهازك.
+الروابط الخارجية تخضع لسياسات المواقع التي تفتحها.
+</p>
+</div>
+<div class="info">
+<h3>الإعلانات</h3>
+<p>
+المساحة الإعلانية الحالية تجريبية وليست إعلانًا حقيقيًا.
+يمكن لاحقًا دراسة ربط الموقع بخدمة مثل Google AdSense
+بعد استيفاء شروطها والموافقة على الموقع.
+</p>
+</div>
+</section>
+
+</main>
+<nav class="nav">
+  <div class="container navinner">
+    <button class="navbtn active" data-page="home" onclick="showPage('home')">
+      <span>🏠</span> الرئيسية
+    </button>
+    <button class="navbtn" data-page="prompts" onclick="showPage('prompts')">
+      <span>✍️</span> البرومبتات
+    </button>
+    <button class="navbtn" data-page="favorites" onclick="showPage('favorites')">
+      <span>❤️</span> المفضلة
+    </button>
+    <button class="navbtn" data-page="about" onclick="showPage('about')">
+      <span>ℹ️</span> عن الموقع
+    </button>
+  </div>
+</nav>
+
+<footer>
+  © <span id="year"></span> مصري أون لاين ❤️
+  <p>أدوات الذكاء الاصطناعي في مكان واحد</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const tools = [
+  {
+    id: "chatgpt",
+    name: "ChatGPT",
+    icon: "🤖",
+    cat: "محادثة",
+    desc: "مساعد ذكي للكتابة والإجابة عن الأسئلة والأفكار.",
+    url: "https://chatgpt.com/"
+  },
+  {
+    id: "gemini",
+    name: "Google Gemini",
+    icon: "✨",
+    cat: "محادثة",
+    desc: "مساعد جوجل للكتابة والبحث وتوليد الأفكار.",
+    url: "https://gemini.google.com/"
+  },
+  {
+    id: "claude",
+    name: "Claude",
+    icon: "🧠",
+    cat: "محادثة",
+    desc: "مساعد ذكي للكتابة والتحليل والتعامل مع الملفات.",
+    url: "https://claude.ai/"
+  },
+  {
+    id: "copilot",
+    name: "Microsoft Copilot",
+    icon: "💡",
+    cat: "محادثة",
+    desc: "مساعد ذكي من مايكروسوفت.",
+    url: "https://copilot.microsoft.com/"
+  },
+  {
+    id: "aistudio",
+    name: "Google AI Studio",
+    icon: "🔬",
+    cat: "محادثة",
+    desc: "تجربة نماذج الذكاء الاصطناعي من جوجل.",
+    url: "https://aistudio.google.com/"
+  },
+  {
+    id: "canva",
+    name: "Canva",
+    icon: "🎨",
+    cat: "صور وتصميم",
+    desc: "تصميم الصور والإعلانات والمنشورات بسهولة.",
+    url: "https://www.canva.com/"
+  },
+  {
+    id: "firefly",
+    name: "Adobe Firefly",
+    icon: "🔥",
+    cat: "صور وتصميم",
+    desc: "إنشاء وتعديل الصور باستخدام الذكاء الاصطناعي.",
+    url: "https://firefly.adobe.com/"
+  },
+  {
+    id: "ideogram",
+    name: "Ideogram",
+    icon: "🖼️",
+    cat: "صور وتصميم",
+    desc: "إنشاء صور وتصميمات بالذكاء الاصطناعي.",
+    url: "https://ideogram.ai/"
+  },
+  {
+    id: "leonardo",
+    name: "Leonardo AI",
+    icon: "🌟",
+    cat: "صور وتصميم",
+    desc: "إنشاء صور وشخصيات ورسومات إبداعية.",
+    url: "https://leonardo.ai/"
+  },
+  {
+    id: "flow",
+    name: "Google Flow",
+    icon: "🎬",
+    cat: "فيديو",
+    desc: "إنشاء مشاهد وفيديوهات بالذكاء الاصطناعي.",
+    url: "https://labs.google/fx/tools/flow"
+  },
+  {
+    id: "runway",
+    name: "Runway",
+    icon: "🎥",
+    cat: "فيديو",
+    desc: "أدوات متقدمة لإنشاء وتعديل الفيديو.",
+    url: "https://runwayml.com/"
+  },
+  {
+    id: "suno",
+    name: "Suno",
+    icon: "🎵",
+    cat: "موسيقى وصوت",
+    desc: "إنشاء الأغاني والموسيقى بالذكاء الاصطناعي.",
+    url: "https://suno.com/"
+  },
+  {
+    id: "udio",
+    name: "Udio",
+    icon: "🎼",
+    cat: "موسيقى وصوت",
+    desc: "إنشاء الموسيقى والأغاني باستخدام الذكاء الاصطناعي.",
+    url: "https://www.udio.com/"
+  },
+  {
+    id: "elevenlabs",
+    name: "ElevenLabs",
+    icon: "🎙️",
+    cat: "موسيقى وصوت",
+    desc: "تحويل النص إلى صوت وإنشاء أصوات بالذكاء الاصطناعي.",
+    url: "https://elevenlabs.io/"
+  }
+];
+
+const prompts = [
+  {
+    title: "إعلان منتج باللهجة المصرية",
+    cat: "إعلانات",
+    text: "اكتب إعلانًا فيديو احترافيًا لمنتج تجاري باللهجة المصرية العامية، بأسلوب كوميدي جذاب، مع إبراز مميزات المنتج والسعر بوضوح، واجعل مدة الإعلان 8 ثوانٍ."
+  },
+  {
+    title: "تصميم صورة منتج احترافية",
+    cat: "صور",
+    text: "أنشئ صورة إعلانية احترافية للمنتج مع الحفاظ الكامل على شكله الأصلي وألوانه وتفاصيله، بإضاءة استوديو احترافية وخلفية جذابة، دون تغيير شكل المنتج."
+  },
+  {
+    title: "أغنية عربية وجدانية",
+    cat: "موسيقى",
+    text: "أنشئ أغنية عربية وجدانية بصوت رجل عربي عميق وخشن ومؤثر، مع نطق عربي واضح ومد الحروف في نهايات الجمل، ومقدمة موسيقية هادئة وتوزيع عاطفي مناسب للكلمات."
+  },
+  {
+    title: "إعلان فيديو 8 ثوانٍ",
+    cat: "فيديو",
+    text: "أنشئ فيديو إعلانيًا سينمائيًا مدته 8 ثوانٍ. اجعل المنتج يظهر بحركة مفاجئة وجذابة، ثم يدور ببطء أمام الكاميرا. حافظ على تفاصيل المنتج الأصلية، دون إضافة كتابة أو شعارات غير مطلوبة."
+  },
+  {
+    title: "تحسين صورة قديمة",
+    cat: "صور",
+    text: "حسّن جودة الصورة ووضوح التفاصيل والألوان والإضاءة بشكل احترافي، مع الحفاظ على ملامح الأشخاص والأشكال الأصلية دون تغيير أو تشويه."
+  },
+  {
+    title: "وصف منتج للبيع أونلاين",
+    cat: "تسويق",
+    text: "اكتب وصفًا تسويقيًا جذابًا لمنتج للبيع عبر الإنترنت باللهجة المصرية، مع عنوان ملفت ومميزات المنتج والسعر وطريقة التوصيل والدفع عند الاستلام، واجعل النص مختصرًا ومقنعًا."
+  }
+];
+</script>
+<script>
+const favoriteKey = "masryOnlineFavoritesV1";
+
+let favorites = [];
+
+try {
+  favorites = JSON.parse(localStorage.getItem(favoriteKey) || "[]");
+  if (!Array.isArray(favorites)) favorites = [];
+} catch (error) {
+  favorites = [];
+}
+
+let activeFilter = "الكل";
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[char];
+  });
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(function() {
+    toast.classList.remove("show");
+  }, 2200);
+}
+
+function toolCard(tool) {
+  const saved = favorites.includes(tool.id);
+
+  return `
+    <article class="card">
+      <div class="cardtop">
+        <div class="icon">${escapeHTML(tool.icon)}</div>
+        <button
+          class="fav ${saved ? "saved" : ""}"
+          onclick="toggleFavorite('${tool.id}')"
+          aria-label="إضافة للمفضلة"
+          title="إضافة للمفضلة"
+        >${saved ? "❤️" : "♡"}</button>
+      </div>
+
+      <h3>${escapeHTML(tool.name)}</h3>
+      <p>${escapeHTML(tool.desc)}</p>
+      <span class="small">${escapeHTML(tool.cat)}</span>
+
+      <a
+        class="open"
+        href="${escapeHTML(tool.url)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >افتح الأداة ↗</a>
+    </article>
+  `;
+}
+
+function renderTools() {
+  const container = document.getElementById("tools");
+  const searchInput = document.getElementById("search");
+
+  if (!container || !searchInput) return;
+
+  const query = searchInput.value.trim().toLowerCase();
+
+  const filtered = tools.filter(function(tool) {
+    const matchesFilter =
+      activeFilter === "الكل" || tool.cat === activeFilter;
+
+    const searchable =
+      (tool.name + " " + tool.desc + " " + tool.cat).toLowerCase();
+
+    return matchesFilter && searchable.includes(query);
+  });
+
+  container.innerHTML = filtered.length
+    ? filtered.map(toolCard).join("")
+    : '<p class="empty">لا توجد أدوات مطابقة لبحثك.</p>';
+
+  const count = document.getElementById("count");
+  if (count) count.textContent = filtered.length;
+
+  document.querySelectorAll(".filter").forEach(function(button) {
+    button.classList.toggle(
+      "active",
+      button.dataset.filter === activeFilter
+    );
+  });
+}
+
+function renderFavorites() {
+  const container = document.getElementById("favoriteGrid");
+  if (!container) return;
+
+  const savedTools = tools.filter(function(tool) {
+    return favorites.includes(tool.id);
+  });
+
+  container.innerHTML = savedTools.length
+    ? savedTools.map(toolCard).join("")
+    : '<p class="empty">لم تضف أي أدوات إلى المفضلة بعد. اضغط على القلب بجوار الأداة لإضافتها هنا ❤️</p>';
+}
+
+function toggleFavorite(id) {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(function(item) {
+      return item !== id;
+    });
+    showToast("تم حذف الأداة من المفضلة");
+  } else {
+    favorites.push(id);
+    showToast("تمت إضافة الأداة إلى المفضلة ❤️");
+  }
+
+  try {
+    localStorage.setItem(favoriteKey, JSON.stringify(favorites));
+  } catch (error) {
+    showToast("تعذر حفظ المفضلة على هذا الجهاز");
+  }
+
+  renderTools();
+  renderFavorites();
+}
+
+function renderPrompts() {
+  const container = document.getElementById("promptGrid");
+  if (!container) return;
+
+  container.innerHTML = prompts.map(function(prompt, index) {
+    return `
+      <article class="card">
+        <div class="cardtop">
+          <span class="small">${escapeHTML(prompt.cat)}</span>
+          <span class="icon">✍️</span>
         </div>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h3>ChatGPT</h3>
-                <p>أداة المحادثة والإجابة على الأسئلة وتوليد المقالات الاحترافية والبرمجة.</p>
-                <a href="https://chatgpt.com" target="_blank" class="tool-footer-btn">Adf</a>
-            </div>
-            <div class="tool-card">
-                <h3>Midjourney</h3>
-                <p>توليد صور فنية فائقة الواقعية والدقة من خلال الأوامر النصية.</p>
-                <a href="https://midjourney.com" target="_blank" class="tool-footer-btn">فتح الأداة الحقيقية</a>
-            </div>
-            <div class="tool-card">
-                <h3>Suno AI</h3>
-                <p>صناعة مقطوعات موسيقية وأغاني كاملة بالكلمات والألحان من الوصف النصي.</p>
-                <a href="https://suno.com" target="_blank" class="tool-footer-btn">فتح الأداة الحقيقية</a>
-            </div>
-            <div class="tool-card">
-                <h3>Claude AI</h3>
-                <p>نموذج متطور جداً لتحليل النصوص الطويلة والمستندات والبرمجة المعقدة.</p>
-                <a href="https://claude.ai" target="_blank" class="tool-footer-btn">فتح الأداة الحقيقية</a>
-            </div>
-        </div>
-    </main>
-    <div id="prompts-page" class="page-content">
-        <div class="hero"><h1>مكتبة الأوامر العربية</h1></div>
-        <div class="prompts-container">
-            <div class="prompt-card">
-                <div><span class="prompt-category">🎨 توليد صور</span><div class="prompt-text">تصميم ثلاثي الأبعاد لغرفة مكتب عصرية بنمط فرعوني دافئ، دقة 8k.</div></div>
-                <button class="copy-btn" onclick="copyText('تصميم ثلاثي الأبعاد لغرفة مكتب عصرية بنمط فرعوني دافئ، دقة 8k.')">نسخ</button>
-            </div>
-            <div class="prompt-card">
-                <div><span class="prompt-category">📝 كتابة محتوى</span><div class="prompt-text">اكتب منشوراً تسويقياً جذاباً لصفحة تجارية تعلن عن منتج جديد للشباب.</div></div>
-                <button class="copy-btn" onclick="copyText('اكتب منشوراً تسويقياً جذاباً لصفحة تجارية تعلن عن منتج جديد للشباب.')">نسخ</button>
-            </div>
-        </div>
-    </div>
-    <div id="favorites-page" class="page-content">
-        <div class="hero"><h1>المفضلة محلياً</h1><p>سيتم حفظ أدواتك المفضلة هنا للوصول السريع.</p></div>
-    </div>
-    <footer><p>© 2026 مصري أون لاين. جميع الحقوق محفوظة.</p></footer>
-    <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchPage('home', this)"><i class="fa-solid fa-house"></i><span>الرئيسية</span></div>
-        <div class="nav-item" onclick="switchPage('prompts', this)"><i class="fa-solid fa-terminal"></i><span>البرومبتات</span></div>
-        <div class="nav-item" onclick="switchPage('favorites', this)"><i class="fa-solid fa-heart"></i><span>المفضلة</span></div>
-    </nav>
-    <div class="toast" id="toast-notification">تم النسخ بنجاح!</div>
-    <script>
-        function switchPage(pageId, element) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.getElementById(pageId + '-page').classList.add('active');
-            element.classList.add('active');
-            window.scrollTo(0,0);
-        }
-        function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('toast-notification');
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2000);
-            });
-        }
-    </script>
+
+        <h3>${escapeHTML(prompt.title)}</h3>
+        <p>${escapeHTML(prompt.text)}</p>
+
+        <button class="copy" onclick="copyPrompt(${index})">
+          📋 نسخ البرومبت
+        </button>
+      </article>
+    `;
+  }).join("");
+}
+
+async function copyPrompt(index) {
+  const prompt = prompts[index];
+  if (!prompt) return;
+
+  try {
+    await navigator.clipboard.writeText(prompt.text);
+    showToast("تم نسخ البرومبت بنجاح 📋");
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+    textarea.value = prompt.text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      showToast("تم نسخ البرومبت 📋");
+    } catch (copyError) {
+      showToast("تعذر النسخ، حاول مرة أخرى");
+    }
+
+    textarea.remove();
+  }
+}
+
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(function(page) {
+    page.classList.toggle("active", page.id === pageId);
+  });
+
+  document.querySelectorAll(".navbtn").forEach(function(button) {
+    button.classList.toggle(
+      "active",
+      button.dataset.page === pageId
+    );
+  });
+
+  if (pageId === "favorites") {
+    renderFavorites();
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+document.getElementById("search").addEventListener("input", renderTools);
+
+document.querySelectorAll(".filter").forEach(function(button) {
+  button.addEventListener("click", function() {
+    activeFilter = button.dataset.filter || "الكل";
+    renderTools();
+  });
+});
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+renderTools();
+renderPrompts();
+renderFavorites();
+</script>
+
 </body>
 </html>
